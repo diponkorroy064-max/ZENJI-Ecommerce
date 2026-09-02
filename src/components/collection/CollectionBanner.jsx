@@ -37,13 +37,13 @@ const headlineVariants = {
 
 export default function CollectionBanner() {
     return (
-        <section className="relative w-full bg-black text-white pt-20 pb-8 px-6 lg:px-12 font-mono border-b border-zinc-900 overflow-hidden">
+        <section className="relative w-full bg-black dark:bg-black text-black dark:text-white bg-zinc-50 pt-20 pb-8 px-6 lg:px-12 font-mono border-b border-zinc-200 dark:border-zinc-900 overflow-hidden transition-colors duration-300">
 
             {/* Background Subtle Tech Scanlines */}
             <div
-                className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"
+                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] pointer-events-none z-0"
                 style={{
-                    backgroundImage: `repeating-linear-gradient(0deg, #fff, #fff 1px, transparent 1px, transparent 4px)`
+                    backgroundImage: `repeating-linear-gradient(0deg, #000, #000 1px, transparent 1px, transparent 4px)`,
                 }}
             />
 
@@ -72,7 +72,7 @@ export default function CollectionBanner() {
                         {/* Main Impact Title */}
                         <motion.h1
                             variants={headlineVariants}
-                            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter uppercase leading-[0.9] select-none text-white"
+                            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter uppercase leading-[0.9] select-none text-black dark:text-white transition-colors duration-300"
                         >
                             ANIME GRAPHIC TEES — <br className="hidden sm:block" />
                             THE FULL COLLECTION
@@ -81,7 +81,7 @@ export default function CollectionBanner() {
                         {/* Subtitle Description */}
                         <motion.p
                             variants={itemVariants}
-                            className="text-zinc-400 text-xs sm:text-sm tracking-widest font-light pt-2"
+                            className="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm tracking-widest font-light pt-2 transition-colors duration-300"
                         >
                             Every drop. Every arc. Documented.
                         </motion.p>
@@ -95,7 +95,7 @@ export default function CollectionBanner() {
                         transition={{ duration: 0.9, ease: 'easeOut' }}
                         className="lg:col-span-3 flex justify-start lg:justify-end items-center select-none"
                     >
-                        <span className="text-8xl sm:text-[11rem] lg:text-[13rem] font-extrabold leading-none tracking-tighter text-zinc-900/80">
+                        <span className="text-8xl sm:text-[11rem] lg:text-[13rem] font-extrabold leading-none tracking-tighter text-zinc-300/80 dark:text-zinc-900/80 transition-colors duration-300">
                             10
                         </span>
                     </motion.div>
@@ -107,7 +107,7 @@ export default function CollectionBanner() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="pt-12 border-t border-zinc-900/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-[11px] sm:text-xs text-zinc-500 tracking-[0.2em] uppercase font-semibold"
+                    className="pt-12 border-t border-zinc-200 dark:border-zinc-900/80 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-500 tracking-[0.2em] uppercase font-semibold transition-colors duration-300"
                 >
                     <div>
                         10 PIECES // THE_ORIGIN_DROP // EST_2024
@@ -121,3 +121,4 @@ export default function CollectionBanner() {
         </section>
     );
 }
+

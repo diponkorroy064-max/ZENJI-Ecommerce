@@ -38,9 +38,9 @@ const headlineVariants = {
 
 export default function DropBanner() {
     return (
-        <section className="relative w-full h-[75vh] min-h-[500px] flex items-center justify-center bg-black overflow-hidden font-mono border-b border-zinc-900">
+        <section className="relative w-full h-[75vh] min-h-[500px] flex items-center justify-center bg-zinc-50 dark:bg-black overflow-hidden font-mono border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300">
 
-            {/* Background Image Layer with Framer Motion Zoom Animation */}
+            {/* Background Image Layer with Theme-Aware Opacity & Vignette */}
             <motion.div
                 className="absolute inset-0 z-0"
                 initial={{ scale: 1.12, opacity: 0 }}
@@ -52,11 +52,12 @@ export default function DropBanner() {
                     alt="ZENJI Awakening Drop Background"
                     fill
                     priority
-                    className="object-cover object-center opacity-30 brightness-75 filter"
+                    className="object-cover object-center opacity-20 dark:opacity-30 brightness-90 dark:brightness-75 transition-opacity duration-300"
                 />
-                {/* Dark Vignette Gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/80" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
+
+                {/* Theme-Adaptive Vignette Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-zinc-50/40 to-zinc-50/80 dark:from-black dark:via-black/40 dark:to-black/80 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-r from-zinc-50/80 via-transparent to-zinc-50/80 dark:from-black/80 dark:via-transparent dark:to-black/80 transition-colors duration-300" />
             </motion.div>
 
             {/* Content Container */}
@@ -85,7 +86,7 @@ export default function DropBanner() {
                     variants={headlineVariants}
                     className="flex flex-col text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter uppercase leading-[0.85] select-none"
                 >
-                    <span className="text-white drop-shadow-md">
+                    <span className="text-zinc-900 dark:text-white drop-shadow-sm dark:drop-shadow-md transition-colors duration-300">
                         AWAKENING
                     </span>
                     <span className="text-red-600 drop-shadow-lg">
@@ -96,7 +97,7 @@ export default function DropBanner() {
                 {/* Subtitle Message */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-zinc-400 text-xs sm:text-sm md:text-base tracking-widest max-w-lg font-light pt-2"
+                    className="text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm md:text-base tracking-widest max-w-lg font-light pt-2 transition-colors duration-300"
                 >
                     The next chapter begins. Are you ready?
                 </motion.p>
@@ -104,7 +105,7 @@ export default function DropBanner() {
                 {/* Drop Release Date */}
                 <motion.div
                     variants={itemVariants}
-                    className="text-[11px] sm:text-xs text-zinc-500 tracking-[0.3em] uppercase pt-1 font-semibold"
+                    className="text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-500 tracking-[0.3em] uppercase pt-1 font-semibold transition-colors duration-300"
                 >
                     DROP DATE: 01 SEPT 2026
                 </motion.div>
