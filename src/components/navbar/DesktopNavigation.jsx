@@ -1,5 +1,4 @@
 import { DESKTOP_NAV_LINKS } from '@/constants/navigation';
-
 import NavLinkItem from './NavLinkItem';
 import MoreDropdown from './MoreDropdown';
 

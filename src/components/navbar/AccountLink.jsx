@@ -4,7 +4,7 @@ import { User } from 'lucide-react';
 export default function AccountLink({ isActive }) {
     return (
         <Link
-            href="/account"
+            href="/auth/signin"
             aria-label="Account"
             className={`p-1 transition-colors ${isActive
                     ? 'text-red-600 dark:text-red-600'

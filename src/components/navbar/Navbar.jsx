@@ -88,7 +88,7 @@ export default function Navbar() {
                             '/wishlist'
                         )}
                         isAccountActive={isActive(
-                            '/account'
+                            '/auth/signin'
                         )}
                         isMobileMenuOpen={
                             isMobileMenuOpen
