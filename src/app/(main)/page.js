@@ -1,9 +1,15 @@
-import Image from "next/image";
+import Featured from "@/components/home/Featured";
+import ZenjiHome from "@/components/home/ZenjiHome";
+
 
 export default function Home() {
   return (
     <>
-      this is the home page
+      <Featured />
+      <ZenjiHome />
     </>
   );
 }
+
+
+

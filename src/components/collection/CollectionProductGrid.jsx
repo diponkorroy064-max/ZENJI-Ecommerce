@@ -1,9 +1,9 @@
 'use client';
+
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { COLLECTION_PRODUCTS } from '@/data/products';
 import ProductCard from '../shared/ProductCard';
-
 
 const CATEGORIES = ['ALL', 'SALE', 'NEW_ARRIVAL', 'LIMITED', 'ZANGETSU'];
 
@@ -35,11 +35,11 @@ export default function CollectionGridSection() {
     }, [activeCategory, searchQuery]);
 
     return (
-        <section className="w-full bg-[#faf8f6] text-black py-10 px-4 sm:px-8 font-mono min-h-screen">
+        <section className="w-full bg-[#faf8f6] dark:bg-black text-black dark:text-white py-10 px-4 sm:px-8 font-mono min-h-screen transition-colors duration-200">
             <div className="max-w-7xl mx-auto space-y-8">
 
                 {/* Top Control Bar: Filter Tabs & Search Box */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-6 border-b border-zinc-300">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-6 border-b border-zinc-300 dark:border-zinc-800">
 
                     {/* Category Filter Tabs */}
                     <div className="flex flex-wrap items-center gap-2">
@@ -49,9 +49,9 @@ export default function CollectionGridSection() {
                                 <button
                                     key={category}
                                     onClick={() => setActiveCategory(category)}
-                                    className={`px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-zinc-900 ${isActive
-                                            ? 'bg-black text-white shadow-md'
-                                            : 'bg-white text-black hover:bg-zinc-100'
+                                    className={`px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-zinc-900 dark:border-zinc-700 ${isActive
+                                            ? 'bg-black dark:bg-white text-white dark:text-black shadow-md'
+                                            : 'bg-white dark:bg-zinc-900 text-black dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white'
                                         }`}
                                 >
                                     {category}
@@ -68,10 +68,10 @@ export default function CollectionGridSection() {
                                 placeholder="SEARCH..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full bg-transparent border border-zinc-400 px-3 py-2 text-xs font-mono tracking-widest text-black placeholder-zinc-500 uppercase focus:outline-none focus:border-black transition-colors"
+                                className="w-full bg-transparent border border-zinc-400 dark:border-zinc-700 px-3 py-2 text-xs font-mono tracking-widest text-black dark:text-white placeholder-zinc-500 dark:placeholder-zinc-500 uppercase focus:outline-none focus:border-black dark:focus:border-white transition-colors"
                             />
                         </div>
-                        <span className="text-xs font-bold tracking-widest text-zinc-500 uppercase whitespace-nowrap">
+                        <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase whitespace-nowrap">
                             {filteredProducts.length} ITEMS
                         </span>
                     </div>
@@ -96,7 +96,7 @@ export default function CollectionGridSection() {
 
                 {/* Empty Search / Filter State */}
                 {filteredProducts.length === 0 && (
-                    <div className="text-center py-20 text-zinc-500 font-mono tracking-widest">
+                    <div className="text-center py-20 text-zinc-500 dark:text-zinc-400 font-mono tracking-widest">
                         NO ITEMS FOUND MATCHING YOUR CRITERIA.
                     </div>
                 )}

@@ -1,9 +1,12 @@
+import EmptyWishlistState from '@/components/wishlist/EmptyWishlistState';
+import WishlistBanner from '@/components/wishlist/WishlistBanner';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            wishlist page
+            <WishlistBanner />
+            <EmptyWishlistState />
         </div>
     );
 };

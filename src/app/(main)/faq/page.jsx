@@ -168,7 +168,7 @@ export default function FAQPage() {
                                                 <span className="text-sm md:text-base text-zinc-800 dark:text-zinc-200 group-hover:text-red-600 dark:group-hover:text-red-500 transition-colors duration-150">
                                                     {item.q}
                                                 </span>
-                                                <span className="text-red-600 dark:text-red-600 ml-4 flex-shrink-0">
+                                                <span className="text-red-600 dark:text-red-600 ml-4 shrink-0">
                                                     {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                                                 </span>
                                             </button>
@@ -191,12 +191,10 @@ export default function FAQPage() {
                     <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight uppercase text-black dark:text-white font-sans">
                         STILL HAVE QUESTIONS?
                     </h3>
+
                     <p className="text-xs md:text-sm tracking-widest uppercase">
                         EMAIL US AT{' '}
-                        <a
-                            href="mailto:support@zenji.shop"
-                            className="text-red-600 hover:underline font-bold"
-                        >
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=support@zenji.shop" className="text-red-600 hover:underline font-bold">
                             SUPPORT@ZENJI.SHOP
                         </a>
                     </p>
@@ -205,3 +203,4 @@ export default function FAQPage() {
         </main>
     );
 }
+

@@ -2,6 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, Flame, Shield, Sparkles, Zap } from 'lucide-react';
+import AboutHeroSection from '@/components/our-story/AboutHeroSection';
+import StorySection from '@/components/our-story/StorySection';
 
 export const metadata = {
     title: "Our Story — ZENJI Cyber Apparel",
@@ -13,26 +15,10 @@ export default function OurStoryPage() {
         <main className="min-h-screen bg-white text-zinc-900 dark:bg-black dark:text-zinc-100 transition-colors duration-300">
 
             {/* Hero Section */}
-            <section className="relative border-b border-zinc-200 dark:border-zinc-900 px-4 py-20 md:py-32 overflow-hidden">
-                {/* Abstract Background Grid Accent */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+            <AboutHeroSection />
 
-                <div className="max-w-5xl mx-auto relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 font-mono text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                        <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                        GENESIS // ARCHIVE 001
-                    </div>
-
-                    <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tighter italic font-mono mb-6 leading-none">
-                        BORN IN THE <span className="text-red-600">STATIC.</span> <br />
-                        MADE FOR THE REALM.
-                    </h1>
-
-                    <p className="max-w-2xl text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans font-light">
-                        ZENJI was founded at the intersection of Japanese mecha aesthetic, cyberculture, and heavyweight streetwear architecture. We don't restock. We drop, fade out, and rebuild.
-                    </p>
-                </div>
-            </section>
+            {/* Story Section */}
+            <StorySection />
 
             {/* Brand Ethos / Stats Bar */}
             <section className="border-b border-zinc-200 dark:border-zinc-900 bg-zinc-50 dark:bg-zinc-950/50 py-8 px-4 font-mono">

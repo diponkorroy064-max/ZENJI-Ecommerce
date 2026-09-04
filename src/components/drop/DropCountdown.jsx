@@ -64,12 +64,12 @@ export default function DropCountdown() {
     ];
 
     return (
-        <section className="w-full bg-[#fcfcfc] text-black py-20 px-4 font-mono overflow-hidden relative border-b border-zinc-200">
+        <section className="w-full bg-[#fcfcfc] dark:bg-black text-black dark:text-white py-20 px-4 font-mono overflow-hidden relative border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-200">
             {/* Background Subtle Scanline Grid Texture */}
             <div
-                className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none"
                 style={{
-                    backgroundImage: `repeating-linear-gradient(0deg, #000, #000 1px, transparent 1px, transparent 4px)`
+                    backgroundImage: `repeating-linear-gradient(0deg, currentColor, currentColor 1px, transparent 1px, transparent 4px)`
                 }}
             />
 
@@ -83,9 +83,9 @@ export default function DropCountdown() {
                 {/* Top Header Tag */}
                 <motion.div
                     variants={itemVariants}
-                    className="flex items-center gap-2 text-xs font-bold text-red-600 tracking-[0.3em] uppercase mb-10"
+                    className="flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-500 tracking-[0.3em] uppercase mb-10"
                 >
-                    <span className="h-2 w-2 rounded-full bg-red-600 inline-block animate-ping" />
+                    <span className="h-2 w-2 rounded-full bg-red-600 dark:bg-red-500 inline-block animate-ping" />
                     <span>AWAKENING // IS LIVE</span>
                 </motion.div>
 
@@ -100,19 +100,19 @@ export default function DropCountdown() {
                             <motion.div
                                 whileHover={{ scale: 1.04, translateY: -4 }}
                                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                className="w-24 h-28 sm:w-32 sm:h-36 md:w-40 md:h-44 bg-white border border-red-500/80 shadow-[0_0_25px_rgba(239,68,68,0.25)] flex flex-col items-center justify-center p-2 relative"
+                                className="w-24 h-28 sm:w-32 sm:h-36 md:w-40 md:h-44 bg-white dark:bg-zinc-950 border border-red-500/80 dark:border-red-600/60 shadow-[0_0_25px_rgba(239,68,68,0.2)] dark:shadow-[0_0_30px_rgba(220,38,38,0.3)] flex flex-col items-center justify-center p-2 relative"
                             >
-                                <span className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-black">
+                                <span className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tighter text-black dark:text-white">
                                     {unit.value}
                                 </span>
-                                <span className="text-[10px] sm:text-xs tracking-[0.25em] text-zinc-400 font-semibold uppercase mt-2">
+                                <span className="text-[10px] sm:text-xs tracking-[0.25em] text-zinc-400 dark:text-zinc-500 font-semibold uppercase mt-2">
                                     {unit.label}
                                 </span>
                             </motion.div>
 
                             {/* Red Divider Colon (Hide after the last box) */}
                             {index < timeBoxUnits.length - 1 && (
-                                <span className="text-red-600 font-bold text-xl sm:text-3xl select-none">
+                                <span className="text-red-600 dark:text-red-500 font-bold text-xl sm:text-3xl select-none">
                                     :
                                 </span>
                             )}
@@ -123,7 +123,7 @@ export default function DropCountdown() {
                 {/* Section Headline */}
                 <motion.h2
                     variants={itemVariants}
-                    className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-black mb-2"
+                    className="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-black dark:text-white mb-2 font-sans"
                 >
                     THE DROP IS COMING
                 </motion.h2>
@@ -131,7 +131,7 @@ export default function DropCountdown() {
                 {/* Date and Location Subtitle */}
                 <motion.p
                     variants={itemVariants}
-                    className="text-xs sm:text-sm tracking-[0.3em] uppercase text-zinc-500 font-medium mb-10"
+                    className="text-xs sm:text-sm tracking-[0.3em] uppercase text-zinc-500 dark:text-zinc-400 font-medium mb-10"
                 >
                     01 SEPTEMBER 2026 — AUSTRALIA
                 </motion.p>
@@ -142,7 +142,7 @@ export default function DropCountdown() {
                     variants={itemVariants}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="inline-flex items-center justify-center bg-[#c80000] hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-widest uppercase px-8 py-4 shadow-lg transition-colors"
+                    className="inline-flex items-center justify-center bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700 text-white font-bold text-xs sm:text-sm tracking-widest uppercase px-8 py-4 shadow-lg transition-colors"
                 >
                     THE WAIT IS OVER – ENTER THE ARCHIVE →
                 </motion.a>

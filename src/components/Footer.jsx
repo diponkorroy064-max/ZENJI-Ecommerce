@@ -33,15 +33,16 @@ export default function Footer() {
                     {/* Brand Info & Social Buttons */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Logo */}
-                        <Link href="/" className="inline-block">
-                            <Image
-                                src="/images/logo.svg"
-                                alt="ZENJI Logo"
-                                width={48}
-                                height={48}
-                                className="w-12 h-auto dark:invert-0 invert transition-[filter] duration-300"
-                            />
+                        {/* Logo */}
+                        <Link
+                            href="/"
+                            className="flex items-center gap-2"
+                        >
+                            <span className="font-extrabold text-3xl md:text-5xl tracking-tighter uppercase italic font-mono text-black dark:text-white hover:text-red-600 dark:hover:text-red-600 transition-colors">
+                                ZENJI
+                            </span>
                         </Link>
+
 
                         {/* Description */}
                         <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-sm leading-relaxed tracking-wider transition-colors duration-300">

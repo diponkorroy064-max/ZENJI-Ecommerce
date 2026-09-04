@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import ProductCard from '../shared/ProductCard';
 
 const PRODUCTS = [
     {
@@ -69,7 +69,7 @@ const itemVariants = {
 
 export default function OriginDropGrid() {
     return (
-        <section className="w-full bg-[#fafafa] text-black py-20 px-4 sm:px-8 font-mono border-b border-zinc-200 overflow-hidden">
+        <section className="w-full bg-[#fafafa] dark:bg-black text-black dark:text-white py-20 px-4 sm:px-8 font-mono border-t border-b border-zinc-200 dark:border-zinc-900 overflow-hidden transition-colors duration-200">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header Section */}
@@ -80,16 +80,16 @@ export default function OriginDropGrid() {
                     transition={{ duration: 0.6 }}
                     className="mb-12 space-y-2"
                 >
-                    <div className="flex items-center gap-2 text-xs font-bold text-red-600 tracking-[0.25em] uppercase">
-                        <span className="h-2 w-2 rounded-full bg-red-600 inline-block animate-pulse" />
+                    <div className="flex items-center gap-2 text-xs font-bold text-red-600 dark:text-red-500 tracking-[0.25em] uppercase">
+                        <span className="h-2 w-2 rounded-full bg-red-600 dark:bg-red-500 inline-block animate-pulse" />
                         <span>THE_ORIGIN_DROP // STILL AVAILABLE</span>
                     </div>
 
-                    <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-black">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter uppercase text-black dark:text-white font-sans">
                         WHILE YOU WAIT.
                     </h2>
 
-                    <p className="text-xs sm:text-sm text-zinc-500 tracking-wider font-light">
+                    <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 tracking-wider font-light">
                         Shop The Origin Drop, our current collection.
                     </p>
                 </motion.div>
@@ -108,49 +108,9 @@ export default function OriginDropGrid() {
                             variants={itemVariants}
                             whileHover={{ y: -6 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                            className="group relative bg-white border border-zinc-900 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
+                            className="group relative flex flex-col justify-between overflow-hidden shadow-sm dark:shadow-none hover:shadow-xl dark:hover:shadow-red-950/20 transition-shadow duration-300 border border-transparent dark:border-zinc-900 dark:hover:border-zinc-800 bg-white dark:bg-zinc-950"
                         >
-                            <Link href={product.href} className="block relative flex-1">
-                                {/* Diagonal Ribbon Sale Badge */}
-                                <div className="absolute top-0 left-0 z-20 w-32 h-32 overflow-hidden pointer-events-none">
-                                    <div className="absolute top-4 -left-10 w-40 bg-red-600 text-white text-[10px] font-bold text-center py-1 uppercase tracking-widest -rotate-45 shadow-md">
-                                        {product.discount}
-                                    </div>
-                                </div>
-
-                                {/* Product Image Stage */}
-                                <div className="relative w-full aspect-[4/5] bg-zinc-100 overflow-hidden border-b border-zinc-900">
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        fill
-                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                                    />
-
-                                    {/* Quick View Bar */}
-                                    <div className="absolute bottom-0 inset-x-0 bg-black/90 text-white text-xs tracking-widest py-3 px-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                        <span className="font-bold uppercase">QUICK VIEW</span>
-                                        <span className="text-red-500 font-bold">→</span>
-                                    </div>
-                                </div>
-
-                                {/* Product Meta Details */}
-                                <div className="p-4 bg-white flex flex-col justify-between space-y-2">
-                                    <h3 className="font-extrabold text-sm sm:text-base tracking-tight uppercase text-black group-hover:text-red-600 transition-colors">
-                                        {product.name}
-                                    </h3>
-
-                                    <div className="flex flex-col">
-                                        <span className="text-xs text-zinc-400 line-through tracking-wider">
-                                            {product.originalPrice}
-                                        </span>
-                                        <span className="text-xl font-extrabold text-red-600 tracking-tighter">
-                                            {product.salePrice}
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
+                            <ProductCard product={product} />
                         </motion.div>
                     ))}
                 </motion.div>
@@ -164,12 +124,11 @@ export default function OriginDropGrid() {
                 >
                     <Link
                         href="/collection"
-                        className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-black pb-1 border-b-2 border-black hover:text-red-600 hover:border-red-600 transition-colors"
+                        className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-black dark:text-white pb-1 border-b-2 border-black dark:border-white hover:text-red-600 dark:hover:text-red-500 hover:border-red-600 dark:hover:border-red-500 transition-colors"
                     >
                         VIEW FULL COLLECTION →
                     </Link>
                 </motion.div>
-
             </div>
         </section>
     );

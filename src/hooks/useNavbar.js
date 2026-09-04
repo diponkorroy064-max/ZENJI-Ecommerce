@@ -13,8 +13,8 @@ export default function useNavbar() {
     const [isSearchOpen, setIsSearchOpen] =
         useState(false);
 
-    const [showAnnouncement, setShowAnnouncement] =
-        useState(true);
+    // const [showAnnouncement, setShowAnnouncement] =
+    //     useState(true);
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -26,7 +26,7 @@ export default function useNavbar() {
                 currentScrollY > lastScrollY &&
                 currentScrollY > 40;
 
-            setShowAnnouncement(!scrollingDown);
+            // setShowAnnouncement(!scrollingDown);
 
             lastScrollY = currentScrollY;
         };
@@ -63,7 +63,7 @@ export default function useNavbar() {
         isMobileMenuOpen,
         isDropdownOpen,
         isSearchOpen,
-        showAnnouncement,
+        // showAnnouncement,
 
         setIsDropdownOpen,
         setIsSearchOpen,
