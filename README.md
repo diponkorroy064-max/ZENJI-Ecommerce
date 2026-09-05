@@ -50,7 +50,8 @@ Ensure you have Node.js (v18 or higher) and npm/pnpm/yarn installed.
 
 * **Developer:** [Diponkor Roy](https://github.com/diponkorroy064-max)
 * **Email:** [diponkorroy064@gmail.com](mailto:diponkorroy064@gmail.com)
-* **Portfolio / GitHub:** [github.com/diponkorroy064-max](https://github.com/diponkorroy064-max)
+* **Portfolio:** [https://github.com/diponkorroy064-max](https://github.com/diponkorroy064-max)
+* **LinkedIn:** [https://www.linkedin.com/in/diponkorroy21010504](https://www.linkedin.com/in/diponkorroy21010504)
 
 
 
