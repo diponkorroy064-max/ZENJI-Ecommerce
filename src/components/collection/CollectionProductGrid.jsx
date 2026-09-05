@@ -1,11 +1,10 @@
 'use client';
-
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { COLLECTION_PRODUCTS } from '@/data/products';
 import ProductCard from '../shared/ProductCard';
-
 const CATEGORIES = ['ALL', 'SALE', 'NEW_ARRIVAL', 'LIMITED', 'ZANGETSU'];
+
 
 const gridContainerVariants = {
     hidden: { opacity: 0 },
@@ -18,11 +17,12 @@ const gridContainerVariants = {
     },
 };
 
+
 export default function CollectionGridSection() {
     const [activeCategory, setActiveCategory] = useState('ALL');
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Filter products by category and search keyword
+    // Filter products by category and search keyword---
     const filteredProducts = useMemo(() => {
         return COLLECTION_PRODUCTS.filter((product) => {
             const matchesCategory =
@@ -33,6 +33,7 @@ export default function CollectionGridSection() {
             return matchesCategory && matchesSearch;
         });
     }, [activeCategory, searchQuery]);
+
 
     return (
         <section className="w-full bg-[#faf8f6] dark:bg-black text-black dark:text-white py-10 px-4 sm:px-8 font-mono min-h-screen transition-colors duration-200">
@@ -49,11 +50,7 @@ export default function CollectionGridSection() {
                                 <button
                                     key={category}
                                     onClick={() => setActiveCategory(category)}
-                                    className={`px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-zinc-900 dark:border-zinc-700 ${isActive
-                                            ? 'bg-black dark:bg-white text-white dark:text-black shadow-md'
-                                            : 'bg-white dark:bg-zinc-900 text-black dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white'
-                                        }`}
-                                >
+                                    className={`px-4 py-2 text-xs font-bold tracking-widest uppercase transition-all duration-200 border border-zinc-900 dark:border-zinc-700 ${isActive ? 'bg-black dark:bg-white text-white dark:text-black shadow-md' : 'bg-white dark:bg-zinc-900 text-black dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-black dark:hover:text-white'}`}>
                                     {category}
                                 </button>
                             );
@@ -72,10 +69,9 @@ export default function CollectionGridSection() {
                             />
                         </div>
                         <span className="text-xs font-bold tracking-widest text-zinc-500 dark:text-zinc-400 uppercase whitespace-nowrap">
-                            {filteredProducts.length} ITEMS
+                            {filteredProducts?.length} ITEMS
                         </span>
                     </div>
-
                 </div>
 
                 {/* Animated Product Card Grid */}
@@ -86,8 +82,7 @@ export default function CollectionGridSection() {
                         initial="hidden"
                         animate="visible"
                         exit={{ opacity: 0, y: 15 }}
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-                    >
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {filteredProducts.map((product) => (
                             <ProductCard key={product.id} product={product} />
                         ))}
@@ -100,8 +95,9 @@ export default function CollectionGridSection() {
                         NO ITEMS FOUND MATCHING YOUR CRITERIA.
                     </div>
                 )}
-
             </div>
         </section>
     );
 }
+
+

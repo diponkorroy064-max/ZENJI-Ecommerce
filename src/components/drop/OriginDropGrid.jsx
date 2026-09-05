@@ -1,51 +1,11 @@
 'use client';
-
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import ProductCard from '../shared/ProductCard';
+import { COLLECTION_PRODUCTS } from '@/data/products';
+import OriginDropCard from './OriginDropCard';
 
-const PRODUCTS = [
-    {
-        id: 'blue-flame-tee',
-        name: 'BLUE FLAME TEE',
-        originalPrice: 'A$39.99',
-        salePrice: 'A$33.99',
-        discount: 'SALE 15% OFF',
-        image: '/images/products/blue-flame.jpg',
-        hoverImage: '/images/products/blue-flame-back.jpg',
-        href: '/drop/blue-flame-tee',
-    },
-    {
-        id: 'demon-blood-tee',
-        name: 'DEMON BLOOD TEE',
-        originalPrice: 'A$39.99',
-        salePrice: 'A$33.99',
-        discount: 'SALE 15% OFF',
-        image: '/images/products/demon-blood.jpg',
-        hoverImage: '/images/products/demon-blood-back.jpg',
-        href: '/drop/demon-blood-tee',
-    },
-    {
-        id: 'warrior-spirit-tee',
-        name: 'WARRIOR SPIRIT TEE',
-        originalPrice: 'A$39.99',
-        salePrice: 'A$33.99',
-        discount: 'SALE 15% OFF',
-        image: '/images/products/warrior-spirit.jpg',
-        hoverImage: '/images/products/warrior-spirit-back.jpg',
-        href: '/drop/warrior-spirit-tee',
-    },
-    {
-        id: 'will-of-the-sun-tee',
-        name: 'WILL OF THE SUN TEE',
-        originalPrice: 'A$39.99',
-        salePrice: 'A$33.99',
-        discount: 'SALE 15% OFF',
-        image: '/images/products/will-of-sun.jpg',
-        hoverImage: '/images/products/will-of-sun-back.jpg',
-        href: '/drop/will-of-the-sun-tee',
-    },
-];
+
+const PRODUCTS = COLLECTION_PRODUCTS.slice(0, 4);
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -110,7 +70,7 @@ export default function OriginDropGrid() {
                             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                             className="group relative flex flex-col justify-between overflow-hidden shadow-sm dark:shadow-none hover:shadow-xl dark:hover:shadow-red-950/20 transition-shadow duration-300 border border-transparent dark:border-zinc-900 dark:hover:border-zinc-800 bg-white dark:bg-zinc-950"
                         >
-                            <ProductCard product={product} />
+                            <OriginDropCard product={product} />
                         </motion.div>
                     ))}
                 </motion.div>

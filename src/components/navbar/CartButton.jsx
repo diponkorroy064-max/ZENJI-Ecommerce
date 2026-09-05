@@ -1,5 +1,6 @@
 import { ShoppingCart } from 'lucide-react';
 
+
 export default function CartButton({
     cartCount,
     onOpen,

@@ -1,54 +1,58 @@
 'use client';
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Image from 'next/image';
 
 const DROP_CARDS = [
     {
         id: 1,
         title: "GOJO INFINITE TEE",
-        image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=800&auto=format&fit=crop",
-        rotate: -8,
-        xOffset: -40,
+        image: "https://images.unsplash.com/photo-1578632767115-351597cf2477",
+        rotate: -12,
+        xOffset: -120,
         zIndex: 10,
     },
     {
         id: 2,
         title: "BUSHIDO OVERSIZED TEE",
-        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
-        rotate: -3,
-        xOffset: -15,
+        image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe",
+        rotate: -4,
+        xOffset: -40,
         zIndex: 20,
     },
     {
         id: 3,
         title: "FREEDOM OVERSIZED TEE",
-        image: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=800&auto=format&fit=crop",
-        rotate: 3,
-        xOffset: 15,
+        image: "https://images.unsplash.com/photo-1509967419530-da38b4704bc6",
+        rotate: 4,
+        xOffset: 40,
         zIndex: 30,
     },
     {
         id: 4,
         title: "URBAN STREETWEAR TEE",
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop",
-        rotate: 8,
-        xOffset: 40,
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+        rotate: 12,
+        xOffset: 120,
         zIndex: 40,
     }
 ];
 
-// Single Card Component with staggered scroll-delay spacing
-const ScrollCard = ({ card, index, totalCards, scrollProgress }) => {
-    // Spread each image trigger across distinct scroll milestones
-    // Card 1 starts at 0.25, Card 2 at 0.42, Card 3 at 0.59, Card 4 at 0.76
-    const startRange = 0.25 + (index / totalCards) * 0.52;
+// Single Card Component with isolated scroll milestones
+const ScrollCard = ({ card, index, scrollProgress }) => {
+    // Step 1: Text finishes splitting by 0.20
+    // Step 2: Each card enters during its own distinct 0.12 slice of the scroll:
+    // Card 0: 0.22 -> 0.34
+    // Card 1: 0.38 -> 0.50
+    // Card 2: 0.54 -> 0.66
+    // Card 3: 0.70 -> 0.82
+    const startRange = 0.22 + index * 0.16;
     const endRange = startRange + 0.12;
 
-    // Slide up from bottom (+450px) to final position (0px)
-    const y = useTransform(scrollProgress, [startRange, endRange], [450, 0]);
+    // Slide up from +700px below screen to 0px
+    const y = useTransform(scrollProgress, [startRange, endRange], [700, 0]);
     const opacity = useTransform(scrollProgress, [startRange, endRange], [0, 1]);
-    const scale = useTransform(scrollProgress, [startRange, endRange], [0.75, 1]);
+    const scale = useTransform(scrollProgress, [startRange, endRange], [0.65, 1]);
 
     return (
         <motion.div
@@ -60,15 +64,17 @@ const ScrollCard = ({ card, index, totalCards, scrollProgress }) => {
                 x: card.xOffset,
                 zIndex: card.zIndex,
             }}
-            className="absolute w-36 sm:w-52 md:w-64 aspect-[3/4] bg-zinc-950 border border-zinc-800 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden group rounded-sm"
+            className="absolute w-56 sm:w-80 md:w-96 aspect-3/4 bg-zinc-950 border border-zinc-800 shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden group rounded-sm cursor-pointer"
         >
-            <img
+            <Image
+                width={800}
+                height={1000}
                 src={card.image}
                 alt={card.title}
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-3 flex flex-col justify-end">
-                <p className="font-extrabold text-xs sm:text-sm text-white uppercase tracking-tight line-clamp-1">
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent p-4 flex flex-col justify-end">
+                <p className="font-extrabold text-sm sm:text-base text-white uppercase tracking-tight line-clamp-1">
                     {card.title}
                 </p>
             </div>
@@ -79,19 +85,17 @@ const ScrollCard = ({ card, index, totalCards, scrollProgress }) => {
 const FeaturedDrop = () => {
     const containerRef = useRef(null);
 
-    // Track scroll progress along the pinned container
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
     });
 
-    // Step 1: Text splits open first (0.05 to 0.22 scroll)
-    const leftTextX = useTransform(scrollYProgress, [0.05, 0.22], ["0%", "-85%"]);
-    const rightTextX = useTransform(scrollYProgress, [0.05, 0.22], ["0%", "85%"]);
+    // Text splits open and completely clears the screen first (0.02 to 0.20)
+    const leftTextX = useTransform(scrollYProgress, [0.02, 0.20], ["0%", "-200%"]);
+    const rightTextX = useTransform(scrollYProgress, [0.02, 0.20], ["0%", "200%"]);
 
     return (
-        /* Expanded container height to 400vh for smooth, deliberate scroll pacing */
-        <div ref={containerRef} className="relative h-[400vh] w-full bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-300">
+        <div ref={containerRef} className="relative h-[450vh] w-full bg-white dark:bg-black text-zinc-900 dark:text-white transition-colors duration-300">
 
             {/* PINNED VIEWPORT */}
             <div className="sticky top-0 h-screen w-full flex flex-col justify-between py-12 px-4 sm:px-8 md:px-12 overflow-hidden">
@@ -106,26 +110,25 @@ const FeaturedDrop = () => {
                 </div>
 
                 {/* HERO AREA WITH STAGGERED CARDS */}
-                <div className="relative my-auto py-16 w-full max-w-7xl mx-auto flex items-center justify-center min-h-[350px] sm:min-h-[480px]">
+                <div className="relative my-auto py-16 w-full max-w-7xl mx-auto flex items-center justify-center min-h-112.5 sm:min-h-150">
                     <div className="relative flex items-center justify-center w-full">
 
                         {/* LEFT TEXT */}
                         <motion.h1
                             style={{ x: leftTextX }}
-                            className="text-6xl sm:text-8xl md:text-[11rem] lg:text-[14rem] font-black uppercase tracking-tighter leading-none text-zinc-900 dark:text-white z-10 whitespace-nowrap"
+                            className="text-6xl sm:text-8xl md:text-[11rem] lg:text-[14rem] font-black uppercase tracking-tighter leading-none text-zinc-900 dark:text-white z-10 whitespace-nowrap select-none"
                         >
                             THE
                         </motion.h1>
 
-                        {/* CARDS SLIDING IN ONE BY ONE WITH INTENTIONAL DELAY */}
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
-                            <div className="relative w-full max-w-2xl h-full flex items-center justify-center">
+                        {/* CARDS CONTAINER */}
+                        <div className="absolute inset-0 flex items-center justify-center z-20">
+                            <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
                                 {DROP_CARDS.map((card, index) => (
                                     <ScrollCard
                                         key={card.id}
                                         card={card}
                                         index={index}
-                                        totalCards={DROP_CARDS.length}
                                         scrollProgress={scrollYProgress}
                                     />
                                 ))}
@@ -135,7 +138,7 @@ const FeaturedDrop = () => {
                         {/* RIGHT TEXT */}
                         <motion.h1
                             style={{ x: rightTextX }}
-                            className="text-6xl sm:text-8xl md:text-[11rem] lg:text-[14rem] font-black uppercase tracking-tighter leading-none text-zinc-900 dark:text-white z-10 whitespace-nowrap"
+                            className="text-6xl sm:text-8xl md:text-[11rem] lg:text-[14rem] font-black uppercase tracking-tighter leading-none text-zinc-900 dark:text-white z-10 whitespace-nowrap select-none"
                         >
                             ORIGIN
                         </motion.h1>

@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -19,16 +18,10 @@ export default function LookbookCard({ item }) {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative w-full overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 transition-colors duration-200"
-        >
+            className="group relative w-full overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 transition-colors duration-200">
+            
             <Link href={item.href || '#'} className="block relative w-full aspect-3/4">
-                <Image
-                    src={item.image}
-                    alt={item.title || 'Lookbook Image'}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-                />
+                <Image src={item.imageUrl[0]?.image} alt={item.title || 'Lookbook Image'} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"/>
 
                 {/* Subtle Hover Gradient & Overlay Tag */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-end p-4">

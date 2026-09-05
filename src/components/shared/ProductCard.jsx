@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -14,15 +13,16 @@ const cardVariants = {
     },
 };
 
+
 export default function ProductCard({ product }) {
     return (
         <motion.div
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative bg-white dark:bg-zinc-950 border border-zinc-900 dark:border-zinc-800 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl dark:hover:shadow-red-950/20 transition-all duration-300"
-        >
-            <Link href={product.href} className="block relative flex-1">
+            className="group relative bg-white dark:bg-zinc-950 border border-zinc-900 dark:border-zinc-800 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl dark:hover:shadow-red-950/20 transition-all duration-300">
+            
+            <Link href={`/collection/${product?.id}`} className="block relative flex-1">
                 {/* Sale Ribbon Badge */}
                 {product.discount && (
                     <div className="absolute top-0 left-0 z-20 w-32 h-32 overflow-hidden pointer-events-none">
@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
                 {/* Product Image Stage */}
                 <div className="relative w-full aspect-4/5 bg-zinc-100 dark:bg-zinc-900 overflow-hidden border-b border-zinc-900 dark:border-zinc-800">
                     <Image
-                        src={product.image}
+                        src={product.imageUrl[0].image}
                         alt={product.name}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

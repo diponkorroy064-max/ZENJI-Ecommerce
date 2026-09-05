@@ -1,26 +1,14 @@
 'use client';
-
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import LookbookCard from './LookbookCard';
+import { COLLECTION_PRODUCTS } from '@/data/products';
 
 const FILTER_TABS = ['ALL', 'FRONT', 'BACK', 'ON MODEL'];
+const LOOKBOOK_ITEMS = COLLECTION_PRODUCTS;
+// console.log('LOOKBOOK_ITEMS:', LOOKBOOK_ITEMS);
 
-const LOOKBOOK_ITEMS = [
-    { id: 'lb-1', image: '/images/products/green-tee-front.jpg', title: 'GREEN TEE // FRONT', tag: 'FRONT', href: '/drop/green-tee' },
-    { id: 'lb-2', image: '/images/products/white-luffy-front.jpg', title: 'WILL TEE // FRONT', tag: 'FRONT', href: '/drop/will-tee' },
-    { id: 'lb-3', image: '/images/products/teal-demon-front.jpg', title: 'TEAL TEE // FRONT', tag: 'FRONT', href: '/drop/teal-tee' },
-    { id: 'lb-4', image: '/images/products/green-model.jpg', title: 'GREEN TEE // MODEL', tag: 'ON MODEL', href: '/drop/green-tee' },
-    { id: 'lb-5', image: '/images/products/purple-gojo-front.jpg', title: 'PURPLE TEE // FRONT', tag: 'FRONT', href: '/drop/purple-tee' },
-    { id: 'lb-6', image: '/images/products/pink-demon-front.jpg', title: 'PINK TEE // FRONT', tag: 'FRONT', href: '/drop/pink-tee' },
-    { id: 'lb-7', image: '/images/products/cream-model.jpg', title: 'CREAM TEE // MODEL', tag: 'ON MODEL', href: '/drop/cream-tee' },
-    { id: 'lb-8', image: '/images/products/blue-front.jpg', title: 'BLUE TEE // FRONT', tag: 'FRONT', href: '/drop/blue-tee' },
-    { id: 'lb-9', image: '/images/products/cream-front.jpg', title: 'CREAM TEE // FRONT', tag: 'FRONT', href: '/drop/cream-tee' },
-    { id: 'lb-10', image: '/images/products/yellow-naruto-front.jpg', title: 'YELLOW TEE // FRONT', tag: 'FRONT', href: '/drop/yellow-tee' },
-    { id: 'lb-11', image: '/images/products/yellow-naruto-front.jpg', title: 'YELLOW TEE // FRONT', tag: 'FRONT', href: '/drop/yellow-tee' },
-    { id: 'lb-12', image: '/images/products/yellow-naruto-front.jpg', title: 'YELLOW TEE // FRONT', tag: 'FRONT', href: '/drop/yellow-tee' },
-];
 
 const gridVariants = {
     hidden: { opacity: 0 },
@@ -32,6 +20,7 @@ const gridVariants = {
         },
     },
 };
+
 
 export default function LookbookGridSection() {
     const [activeTab, setActiveTab] = useState('ALL');
