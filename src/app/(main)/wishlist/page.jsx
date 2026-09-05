@@ -1,8 +1,13 @@
 import EmptyWishlistState from '@/components/wishlist/EmptyWishlistState';
 import WishlistBanner from '@/components/wishlist/WishlistBanner';
+
 import React from 'react';
 
-const page = () => {
+const WishListPage = async () => {
+    // const session = 
+    // console.log("session from wishlist", session);
+   
+
     return (
         <div>
             <WishlistBanner />
@@ -11,4 +16,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default WishListPage;

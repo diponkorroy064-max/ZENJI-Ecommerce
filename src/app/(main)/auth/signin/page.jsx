@@ -1,19 +1,48 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { Mail, ArrowRight, Lock, User, Sparkles, LogIn, ExternalLink, } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { Mail, ArrowRight, Lock, User, LogIn, ExternalLink } from 'lucide-react';
 import { DiApple } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
 
 
 export default function SignInPage() {
+    const router = useRouter();
     const [showEmailForm, setShowEmailForm] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Logging in with:', { email, password });
+
+        const { data, error } = await authClient.signIn.email({
+            email,
+            password,
+            rememberMe: true,
+            // callbackURL: "/",
+        });
+        console.log('Sign In response:', { data, error });
+
+        if (error) {
+            toast.error("Sign In failed: " + error.message);
+        } else if (data) {
+            toast.success("Signed in successfully!");
+            router.push("/");
+        }
+    };
+
+    const handleSigninGoogle = async () => {
+        const { data, error } = await authClient.signIn.social({
+            provider: "google",
+            callbackURL: "/",
+        });
+
+        if (error) {
+            toast.error("Google Sign In failed: " + error.message);
+        }
     };
 
     return (
@@ -37,21 +66,15 @@ export default function SignInPage() {
 
                 {/* Social Login / Auth Options */}
                 <div className="space-y-3">
+
                     {/* Apple Sign In Button */}
-                    <button
-                        type="button"
-                        className="w-full bg-black text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-colors border border-black dark:border-white"
-                    >
+                    <button type="button" className="w-full bg-black text-white dark:bg-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-colors border border-black dark:border-white cursor-pointer">
                         <DiApple size={20} />
                         <span>Continue with Apple</span>
                     </button>
 
                     {/* Google Sign In Button */}
-                    <button
-                        type="button"
-                        className="w-full bg-white dark:bg-black text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-colors border border-zinc-300 dark:border-zinc-800"
-                    >
-
+                    <button onClick={handleSigninGoogle} type="button" className="w-full bg-white dark:bg-black text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-3 transition-colors border border-zinc-300 dark:border-zinc-800 cursor-pointer">
                         <FcGoogle size={20} />
                         <span>Continue with Google</span>
                     </button>
@@ -66,11 +89,7 @@ export default function SignInPage() {
 
                     {/* Expandable Email Form or Trigger Button */}
                     {!showEmailForm ? (
-                        <button
-                            type="button"
-                            onClick={() => setShowEmailForm(true)}
-                            className="w-full bg-transparent text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-colors border border-zinc-300 dark:border-zinc-800"
-                        >
+                        <button type="button" onClick={() => setShowEmailForm(true)} className="w-full bg-transparent text-black dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 py-3.5 px-4 font-bold text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-colors border border-zinc-300 dark:border-zinc-800 cursor-pointer">
                             <Mail size={14} />
                             <span>Continue with Email</span>
                         </button>
@@ -84,6 +103,7 @@ export default function SignInPage() {
                                 <div className="relative">
                                     <input
                                         type="email"
+                                        name="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="YOU@EMAIL.COM"
@@ -101,6 +121,7 @@ export default function SignInPage() {
                                 <div className="relative">
                                     <input
                                         type="password"
+                                        name="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="••••••••"
@@ -112,7 +133,7 @@ export default function SignInPage() {
 
                             <button
                                 type="submit"
-                                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-colors font-sans mt-2"
+                                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 text-xs tracking-widest uppercase flex items-center justify-center gap-2 transition-colors font-sans mt-2 cursor-pointer"
                             >
                                 <LogIn size={14} />
                                 <span>SIGN IN</span>
@@ -124,7 +145,7 @@ export default function SignInPage() {
                     {/* Browse as Guest Option */}
                     <div className="text-center pt-4">
                         <Link
-                            href="/auth/signin"
+                            href="/"
                             className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase text-zinc-500 hover:text-black dark:hover:text-white transition-colors underline underline-offset-4"
                         >
                             <User size={12} />
@@ -147,7 +168,7 @@ export default function SignInPage() {
                     {/* Bottom Registration Link */}
                     <div className="pt-6 border-t border-zinc-200 dark:border-zinc-900 mt-6 text-center">
                         <p className="text-xs text-zinc-600 dark:text-zinc-400 tracking-wider flex items-center justify-center gap-1 flex-wrap">
-                            <span>DON'T HAVE AN ACCOUNT?</span>
+                            <span>DON&apos;T HAVE AN ACCOUNT?</span>
                             <Link
                                 href="/auth/register"
                                 className="text-red-600 hover:underline font-bold tracking-widest uppercase inline-flex items-center gap-1 ml-1"
@@ -163,3 +184,4 @@ export default function SignInPage() {
         </main>
     );
 }
+

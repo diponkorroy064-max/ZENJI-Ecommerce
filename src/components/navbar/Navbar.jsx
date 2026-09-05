@@ -47,10 +47,7 @@ export default function Navbar() {
                     <div className="max-w-7xl mx-auto h-full flex justify-between items-center">
 
                         {/* Logo */}
-                        <Link
-                            href="/"
-                            className="flex items-center gap-2"
-                        >
+                        <Link href="/" className="flex items-center gap-2">
                             <span className="font-extrabold text-2xl md:text-3xl tracking-tighter uppercase italic font-mono text-black dark:text-white hover:text-red-600 dark:hover:text-red-600 transition-colors">
                                 ZENJI
                             </span>

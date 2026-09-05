@@ -15,14 +15,14 @@ export default function ZenjiHome() {
                 className="relative w-full min-h-screen flex flex-col justify-between p-6 md:p-12 overflow-hidden"
             >
                 {/* BACKGROUND IMAGE / OVERLAY */}
-                <div className="absolute inset-0 z-0 opacity-20 dark:opacity-40">
+                {/* <div className="absolute inset-0 z-0 opacity-20 dark:opacity-40">
                     <img
                         src="/assets/zenji-hero.jpg"
                         alt="ZENJI Streetwear Culture"
                         className="w-full h-full object-cover grayscale"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white dark:from-black dark:via-transparent dark:to-black" />
-                </div>
+                </div> */}
 
                 {/* METADATA / SUBTITLE */}
                 <motion.div
