@@ -44,4 +44,29 @@ Ensure you have Node.js (v18 or higher) and npm/pnpm/yarn installed.
    ```bash
    git clone [https://github.com/your-username/zenji-ecommerce.git](https://github.com/your-username/zenji-ecommerce.git)
    cd zenji-ecommerce
+
    
+### 👤 Author
+
+* **Developer:** [Diponkor Roy](https://github.com/diponkorroy064-max)
+* **Email:** [diponkorroy064@gmail.com](mailto:diponkorroy064@gmail.com)
+* **Portfolio / GitHub:** [github.com/diponkorroy064-max](https://github.com/diponkorroy064-max)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
