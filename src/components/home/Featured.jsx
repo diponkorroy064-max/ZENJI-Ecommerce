@@ -19,8 +19,7 @@ const Featured = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.5 }}
-                    className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 border-b border-zinc-200 dark:border-zinc-800 pb-6"
-                >
+                    className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 border-b border-zinc-200 dark:border-zinc-800 pb-6">
                     <div className="space-y-1">
                         <p className="font-mono text-xs sm:text-sm text-red-600 dark:text-red-500 font-semibold uppercase tracking-widest">
                             COLLECTION // THE_ORIGIN_DROP
@@ -43,7 +42,7 @@ const Featured = () => {
                     transition={{ duration: 0.6 }}
                     className="flex overflow-x-auto gap-6 pb-6 pt-2 scrollbar-thin scrollbar-thumb-red-600 scrollbar-track-zinc-200 dark:scrollbar-track-zinc-900 snap-x snap-mandatory">
                     {featuredProducts.map((product, index) => (
-                        <div key={product.id || index} className="min-w-[260px] sm:min-w-[300px] max-w-[320px] flex-shrink-0 snap-start">
+                        <div key={product.id || index} className="min-w-[260px] sm:min-w-[300px] max-w-[320px] shrink-0 snap-start">
                             <ProductCard product={product} index={index}/>
                         </div>
                     ))}

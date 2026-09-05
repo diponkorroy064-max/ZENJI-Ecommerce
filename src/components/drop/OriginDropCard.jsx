@@ -9,7 +9,7 @@ export default function OriginDropCard({ product }) {
 
 
     return (
-        <Link href={`/drop/${id}`} className="group block w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 transition-all duration-300 hover:border-zinc-900 dark:hover:border-zinc-100 overflow-hidden">
+        <Link href={`/collection/${product?.id}`} className="group block w-full bg-white dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-800 transition-all duration-300 hover:border-zinc-900 dark:hover:border-zinc-100 overflow-hidden">
 
             {/* Image Container with Diagonal Badge */}
             <div className="relative w-full aspect-square bg-zinc-100 dark:bg-zinc-900 overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
