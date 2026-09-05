@@ -1,4 +1,4 @@
-# ZENJI — Tactical & Cyberpunk Streetwear E-Commerce
+# ZENJI — Tactical Streetwear E-Commerce
 
 ZENJI is a modern, high-performance e-commerce web application built for high-end streetwear, tactical apparel, and futuristic fashion. Featuring a sleek cyberpunk-inspired UI, responsive product galleries, interactive cart workflows, and dynamic accordion size guides, ZENJI provides a seamless shopping experience across all device sizes.
 
