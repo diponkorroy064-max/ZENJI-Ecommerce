@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 
@@ -79,7 +80,7 @@ export default function Banner() {
                     STORY
                 </div>
 
-                <div className="z-10 w-full px-6 pt-16 text-white sm:ml-[6vw] sm:w-[43%] sm:max-w-150 sm:px-0 sm:pt-8">
+                <div className="z-10 w-full px-6 pt-16 text-white sm:ml-[6vw] sm:w-[43%] sm:max-w-150 sm:px-0 sm:pt-8 space-y-6">
                     <p className="mb-5 flex items-center gap-2.5 text-[.64rem] font-bold tracking-[.28em] text-[#ae5455]">
                         <span className="h-[.45rem] w-[.45rem] animate-pulse rounded-full bg-[#c7383d]" />
                         THE_ORIGIN_DROP // SCROLL_TO_MOVE
@@ -91,12 +92,14 @@ export default function Banner() {
                         STORY
                     </h1>
 
-                    <button type="button" className="group mt-8 bg-[#c7383d] px-6 py-4 text-[.7rem] font-extrabold tracking-[.04em] text-white transition hover:-translate-y-1 hover:bg-[#a92c31]">
-                        SHOP THE DROP{" "}
-                        <span className="ml-2 inline-block text-base transition group-hover:translate-x-1">
-                            →
-                        </span>
-                    </button>
+                    <div>
+                        <Link href={'/drop'} className="group mt-8 bg-[#c7383d] px-6 py-4 text-[.7rem] font-extrabold tracking-[.04em] text-white transition hover:-translate-y-1 hover:bg-[#a92c31]">
+                            SHOP THE DROP{" "}
+                            <span className="ml-2 inline-block text-base transition group-hover:translate-x-1">
+                                →
+                            </span>
+                        </Link>
+                    </div>
                 </div>
 
                 <div aria-hidden="true" className="absolute right-[9%] top-[63%] z-10 h-2 w-4.5rem animate-pulse rotate-48deg sm:right-[18%] sm:top-[58%]">
