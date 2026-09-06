@@ -1,110 +1,110 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+"use client";
+import { useEffect, useRef, useState } from "react";
 
-// Array of 5 high-resolution full-width hero images
-const BANNER_IMAGES = [
-    'https://images.unsplash.com/photo-1578632767115-351597cf2477',
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',
-    'https://images.unsplash.com/photo-1509631179647-0177331693ae',
-    'https://images.unsplash.com/photo-1529139574466-a303027c1d8b',
-    'https://images.unsplash.com/photo-1539109136881-3be0616acf4b',
-];
 
-const Banner = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+export default function Banner() {
+    const videoRef = useRef(null);
+    const [videoFinished, setVideoFinished] = useState(false);
 
-    // Loop through images continuously every 5 seconds
     useEffect(() => {
-        const imageInterval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % BANNER_IMAGES.length);
-        }, 5000);
+        const video = videoRef.current;
+        if (!video) return undefined;
+        let pauseTimer = 0;
 
-        return () => clearInterval(imageInterval);
+        const pauseVideo = () => {
+            video.pause();
+        };
+
+        const onScroll = () => {
+            if (video.ended) {
+                video.currentTime = 0;
+                setVideoFinished(false);
+            }
+
+            video.play().catch((error) => {
+                if (error.name !== "AbortError") {
+                    console.error("Unable to play the banner video.", error);
+                }
+            });
+            window.clearTimeout(pauseTimer);
+            pauseTimer = window.setTimeout(pauseVideo, 140);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        const onVideoEnded = () => {
+            pauseVideo();
+            setVideoFinished(true);
+        };
+
+        video.addEventListener("ended", onVideoEnded);
+
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            video.removeEventListener("ended", onVideoEnded);
+            window.clearTimeout(pauseTimer);
+            video.pause();
+        };
     }, []);
 
-
     return (
-        <section className="relative w-full min-h-screen overflow-hidden flex items-center justify-center bg-black text-white select-none py-12 px-6 sm:px-12 z-50">
+        <section
+            aria-label="The Origin Drop"
+            className="relative isolate min-h-[180vh] bg-[#e6e6e4] font-sans text-[#171717]"
+        >
+            <div
+                className={`${videoFinished ? "relative" : "sticky"
+                    } top-0 z-10 flex h-screen items-center overflow-hidden`}
+            >
 
-            {/* 1. FULL-COVER BACKGROUND CAROUSEL (IMAGES SLIDE FROM LEFT) */}
-            <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
-                <AnimatePresence mode="popLayout">
-                    <motion.div
-                        key={currentImageIndex}
-                        initial={{ x: '-100%', opacity: 0 }}
-                        animate={{ x: '0%', opacity: 1 }}
-                        exit={{ x: '100%', opacity: 0 }}
-                        transition={{
-                            duration: 0.9,
-                            ease: [0.16, 1, 0.3, 1],
-                        }}
-                        className="absolute inset-0 w-full h-full"
-                    >
-                        <Image
-                            src={BANNER_IMAGES[currentImageIndex]}
-                            alt={`Zenji Banner Background ${currentImageIndex + 1}`}
-                            fill
-                            priority
-                            sizes="100vw"
-                            className="object-cover object-center"
-                        />
-                    </motion.div>
-                </AnimatePresence>
-
-                {/* DARK OVERLAY FOR TEXT READABILITY & ATMOSPHERE */}
-                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 z-10" />
-            </div>
-
-            {/* 2. BACKGROUND WATERMARK TEXT "ZENJI" */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <h1 className="text-[22vw] font-black tracking-widest text-white/10 uppercase leading-none">
-                    ZENJI
-                </h1>
-            </div>
-
-            {/* 3. MAIN FOREGROUND CONTENT */}
-            <div className="relative max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center z-20">
-
-                {/* LEFT BRAND TEXT & CTA */}
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className="lg:col-span-7 flex flex-col justify-center gap-6 text-left"
+                <video
+                    ref={videoRef}
+                    aria-hidden="true"
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
                 >
-                    {/* TAGLINE */}
-                    <div className="flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold tracking-wider text-neutral-300">
-                        <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-                        <span className="text-red-500 font-bold uppercase tracking-widest">
-                            @ THE_ORIGIN_DROP
+                    <source src="/zenji_video.mp4" type="video/mp4" />
+                </video>
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 z-1 bg-[#171717]/45"
+                />
+
+
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-[52%] -z-10 -translate-x-1/2 -translate-y-1/2 select-none text-[37vw] font-black leading-[.7] -tracking-widest text-white/27 sm:top-[44%] sm:text-[clamp(9rem,25vw,25rem)]"
+                >
+                    STORY
+                </div>
+
+                <div className="z-10 w-full px-6 pt-16 text-white sm:ml-[6vw] sm:w-[43%] sm:max-w-150 sm:px-0 sm:pt-8">
+                    <p className="mb-5 flex items-center gap-2.5 text-[.64rem] font-bold tracking-[.28em] text-[#ae5455]">
+                        <span className="h-[.45rem] w-[.45rem] animate-pulse rounded-full bg-[#c7383d]" />
+                        THE_ORIGIN_DROP // SCROLL_TO_MOVE
+                    </p>
+
+                    <h1 className="max-w-135 text-[clamp(3.5rem,8vw,7.8rem)] font-black leading-[.82] tracking-[-.075em]">
+                        WEAR YOUR
+                        <br />
+                        STORY
+                    </h1>
+
+                    <button type="button" className="group mt-8 bg-[#c7383d] px-6 py-4 text-[.7rem] font-extrabold tracking-[.04em] text-white transition hover:-translate-y-1 hover:bg-[#a92c31]">
+                        SHOP THE DROP{" "}
+                        <span className="ml-2 inline-block text-base transition group-hover:translate-x-1">
+                            →
                         </span>
-                        <span>//</span>
-                        <span className="tracking-widest">LOADING..</span>
-                    </div>
+                    </button>
+                </div>
 
-                    {/* MAIN TITLE */}
-                    <h2 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none max-w-2xl drop-shadow-lg">
-                        WEAR YOUR STORY
-                    </h2>
-
-                    {/* SHOP CTA BUTTON */}
-                    <div className="pt-2">
-                        <motion.a
-                            href="#shop"
-                            whileHover={{ scale: 1.04 }}
-                            whileTap={{ scale: 0.96 }}
-                            className="inline-flex items-center justify-center gap-3 bg-red-600 hover:bg-red-700 text-white font-extrabold text-sm sm:text-base tracking-wider uppercase px-8 py-4 rounded-none transition-all shadow-lg hover:shadow-red-600/50"
-                        >
-                            SHOP THE DROP
-                            <span className="text-lg">→</span>
-                        </motion.a>
-                    </div>
-                </motion.div>
+                <div aria-hidden="true" className="absolute right-[9%] top-[63%] z-10 h-2 w-4.5rem animate-pulse rotate-48deg sm:right-[18%] sm:top-[58%]">
+                    <span className="absolute inset-0 rounded-[80%_10%_80%_10%] bg-[#191919]" />
+                    <span className="absolute left-[42%] top-1 h-[.15rem] w-[1.6rem] bg-[#c57c5d]" />
+                </div>
             </div>
         </section>
     );
-};
+}
 
-export default Banner;

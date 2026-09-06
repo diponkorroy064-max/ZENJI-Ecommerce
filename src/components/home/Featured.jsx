@@ -42,7 +42,7 @@ const Featured = () => {
                     transition={{ duration: 0.6 }}
                     className="flex overflow-x-auto gap-6 pb-6 pt-2 scrollbar-thin scrollbar-thumb-red-600 scrollbar-track-zinc-200 dark:scrollbar-track-zinc-900 snap-x snap-mandatory">
                     {featuredProducts.map((product, index) => (
-                        <div key={product.id || index} className="min-w-[260px] sm:min-w-[300px] max-w-[320px] shrink-0 snap-start">
+                        <div key={product.id || index} className="min-w-65 sm:min-w-75 max-w-[320px] shrink-0 snap-start">
                             <ProductCard product={product} index={index}/>
                         </div>
                     ))}
