@@ -1,21 +1,20 @@
 'use client';
-
 import { motion } from 'framer-motion';
 
+
 export default function AboutHeroSection() {
-    // Parent container controlling the sequential stagger speed
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.12, // Gap duration between each line revealing
+                staggerChildren: 0.12,
                 delayChildren: 0.1,
             },
         },
     };
 
-    // Animation settings for each individual line of text
+    // Animation settings for each individual line of text---
     const lineVariants = {
         hidden: {
             opacity: 0,
@@ -62,7 +61,7 @@ export default function AboutHeroSection() {
                         </motion.span>
                         <motion.div
                             variants={lineVariants}
-                            className="w-12 h-[1px] bg-red-600 dark:bg-red-500"
+                            className="w-12 h-1px bg-red-600 dark:bg-red-500"
                         />
                     </div>
 

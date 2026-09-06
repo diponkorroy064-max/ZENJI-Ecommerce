@@ -1,9 +1,8 @@
 'use client';
-
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FaTiktok, FaInstagram, FaFacebookF } from 'react-icons/fa';
+
 
 export default function Footer() {
     const pathname = usePathname();
@@ -71,7 +70,7 @@ export default function Footer() {
                                     href="https://www.instagram.com/zenji_.shop"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 text-white font-sans font-semibold px-4 py-2.5 rounded-sm text-sm bg-gradient-to-r from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 transition-opacity"
+                                    className="flex items-center gap-2 text-white font-sans font-semibold px-4 py-2.5 rounded-sm text-sm bg-linear-to-r from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 transition-opacity"
                                 >
                                     <FaInstagram size={16} />
                                     <span>Instagram</span>

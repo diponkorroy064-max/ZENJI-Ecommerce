@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const CoinsTab = ({ coins = 500 }) => {
     const historyData = [
         { date: '05 SEPT 2026', event: 'DAILY LOGIN\nDaily Login bonus', coins: '+250', balance: 500 },
@@ -25,7 +26,7 @@ const CoinsTab = ({ coins = 500 }) => {
                     Earn coins for showing up, reviewing and buying. 100 coins = A$1.
                 </p>
 
-                <div className="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 p-8 flex flex-col items-center justify-center text-center gap-3 rounded-sm">
+                <div className="bg-linear-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 p-8 flex flex-col items-center justify-center text-center gap-3 rounded-sm">
                     <p className="font-mono text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-500">
                         CURRENT BALANCE
                     </p>

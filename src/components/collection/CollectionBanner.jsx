@@ -35,9 +35,10 @@ const headlineVariants = {
     },
 };
 
+
 export default function CollectionBanner() {
     return (
-        <section className="relative w-full bg-black dark:bg-black text-black dark:text-white bg-zinc-50 pt-20 pb-8 px-6 lg:px-12 font-mono border-b border-zinc-200 dark:border-zinc-900 overflow-hidden transition-colors duration-300">
+        <section className="relative w-full dark:bg-black text-black dark:text-white bg-zinc-50 pt-20 pb-8 px-6 lg:px-12 font-mono border-b border-zinc-200 dark:border-zinc-900 overflow-hidden transition-colors duration-300">
 
             {/* Background Subtle Tech Scanlines */}
             <div
@@ -47,7 +48,7 @@ export default function CollectionBanner() {
                 }}
             />
 
-            <div className="relative z-10 max-w-7xl mx-auto flex flex-col justify-between min-h-[380px]">
+            <div className="relative z-10 max-w-7xl mx-auto flex flex-col justify-between min-h-95">
 
                 {/* Main Banner Content */}
                 <motion.div

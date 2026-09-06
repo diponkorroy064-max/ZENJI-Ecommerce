@@ -1,9 +1,8 @@
 'use client';
-
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-// Animation variants for container staggering
+// Animation variants for container staggering--
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -38,7 +37,7 @@ const headlineVariants = {
 
 export default function DropBanner() {
     return (
-        <section className="relative w-full h-[75vh] min-h-[500px] flex items-center justify-center bg-zinc-50 dark:bg-black overflow-hidden font-mono border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300">
+        <section className="relative w-full h-[75vh] min-h-125 flex items-center justify-center bg-zinc-50 dark:bg-black overflow-hidden font-mono border-b border-zinc-200 dark:border-zinc-900 transition-colors duration-300">
 
             {/* Background Image Layer with Theme-Aware Opacity & Vignette */}
             <motion.div
@@ -56,8 +55,8 @@ export default function DropBanner() {
                 />
 
                 {/* Theme-Adaptive Vignette Gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-50 via-zinc-50/40 to-zinc-50/80 dark:from-black dark:via-black/40 dark:to-black/80 transition-colors duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-r from-zinc-50/80 via-transparent to-zinc-50/80 dark:from-black/80 dark:via-transparent dark:to-black/80 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-linear-to-t from-zinc-50 via-zinc-50/40 to-zinc-50/80 dark:from-black dark:via-black/40 dark:to-black/80 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-linear-to-r from-zinc-50/80 via-transparent to-zinc-50/80 dark:from-black/80 dark:via-transparent dark:to-black/80 transition-colors duration-300" />
             </motion.div>
 
             {/* Content Container */}

@@ -35,7 +35,7 @@ export default function LookbookHeroSection() {
             />
 
             <motion.div
-                className="max-w-7xl mx-auto flex flex-col justify-between min-h-[380px] sm:min-h-[420px] relative z-10"
+                className="max-w-7xl mx-auto flex flex-col justify-between min-h-95 sm:min-h-105 relative z-10"
                 initial="hidden"
                 animate="visible"
                 variants={containerVariants}

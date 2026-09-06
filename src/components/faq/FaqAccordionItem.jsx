@@ -17,7 +17,7 @@ export default function FaqAccordionItem({ question, answer }) {
                     }`}>
                     {question}
                 </span>
-                <span className="text-red-600 dark:text-red-500 flex-shrink-0">
+                <span className="text-red-600 dark:text-red-500 shrink-0">
                     {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                 </span>
             </button>

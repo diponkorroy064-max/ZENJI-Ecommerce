@@ -56,23 +56,45 @@ export default function OurStoryPage() {
                     </p>
                 </div>
 
+
                 {/* Visual Showcase Card */}
-                <div className="relative group">
+                <div className="relative group overflow-hidden rounded-lg">
                     <div className="w-full h-80 sm:h-96 border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 rounded-lg p-6 flex flex-col justify-between overflow-hidden relative shadow-lg">
-                        <div className="flex justify-between items-start font-mono text-xs text-zinc-400">
-                            <span>ZENJI_LABS</span>
-                            <span className="text-red-600 font-bold">LIMITED EDITION</span>
+
+                        {/* Background Image with Hover Scale */}
+                        <Image
+                            fill
+                            priority
+                            src="https://images.unsplash.com/photo-1509631179647-0177331693ae"
+                            alt="Cybernetic Streetwear Showcase"
+                            className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+
+                        {/* Dark Gradient Overlay for Contrast */}
+                        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/30 dark:from-black/95 dark:via-black/50 dark:to-black/40 z-0" />
+
+                        {/* Card Header Content */}
+                        <div className="flex justify-between items-start font-mono text-xs text-zinc-300 z-10">
+                            <span className="tracking-widest uppercase">ZENJI_LABS</span>
+                            <span className="text-red-500 font-bold tracking-widest bg-black/60 backdrop-blur-md px-2 py-0.5 border border-red-500/30 rounded-xs">
+                                LIMITED EDITION
+                            </span>
                         </div>
 
-                        <div className="space-y-2 relative z-10">
-                            <span className="font-mono text-xs text-red-600 tracking-widest uppercase">System Operational</span>
-                            <h3 className="text-3xl font-extrabold font-mono uppercase italic tracking-tighter">
+                        {/* Main Headline Content */}
+                        <div className="space-y-1.5 relative z-10">
+                            <span className="font-mono text-xs text-red-500 tracking-widest uppercase font-semibold flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                                System Operational
+                            </span>
+                            <h3 className="text-3xl sm:text-4xl font-extrabold font-mono uppercase italic tracking-tighter text-white drop-shadow-md">
                                 CYBERNETIC STREETWEAR
                             </h3>
                         </div>
 
-                        {/* Subtle Aesthetic Accent */}
-                        <div className="absolute right-[-40px] bottom-[-40px] w-64 h-64 border border-dashed border-zinc-300 dark:border-zinc-800 rounded-full group-hover:scale-110 transition-transform duration-500" />
+                        {/* Decorative Technical Grid Overlay Accent */}
+                        <div className="absolute -right-10 -bottom-10 w-64 h-64 border border-dashed border-red-500/20 rounded-full group-hover:scale-110 group-hover:border-red-500/40 transition-all duration-500 pointer-events-none z-0" />
                     </div>
                 </div>
             </section>
@@ -124,8 +146,8 @@ export default function OurStoryPage() {
                     </div>
                 </div>
             </section>
-
         </main>
     );
 }
+
 

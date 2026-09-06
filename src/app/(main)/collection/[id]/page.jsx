@@ -1,10 +1,11 @@
 'use client';
-
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Heart, Plus, Minus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { COLLECTION_PRODUCTS } from '@/data/products';
+import Image from 'next/image';
+
 
 export default function ProductDetailsPage() {
     const { id } = useParams();
@@ -12,7 +13,6 @@ export default function ProductDetailsPage() {
     const product = COLLECTION_PRODUCTS.find((p) => p.id === id);
     const item = product || {};
 
-    // Extract string image URLs safely whether item is string or { image: "..." } object
     const rawImages = Array.isArray(item.imageUrl)
         ? item.imageUrl
         : item.imageUrl
@@ -59,6 +59,7 @@ export default function ProductDetailsPage() {
         setActiveAccordion((prev) => (prev === section ? null : section));
     };
 
+
     if (!product) {
         return (
             <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
@@ -72,6 +73,7 @@ export default function ProductDetailsPage() {
             </div>
         );
     }
+
 
     return (
         <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors">
@@ -96,9 +98,9 @@ export default function ProductDetailsPage() {
                         {/* Hover Wheel Scroll Container */}
                         <div
                             onWheel={handleWheelScroll}
-                            className="relative w-full aspect-[4/5] bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden cursor-ns-resize group"
+                            className="relative w-full aspect-4/5 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden cursor-ns-resize group"
                         >
-                            <img
+                            <Image width={500} height={500}
                                 src={images[selectedImageIndex] || '/images/products/placeholder.jpg'}
                                 alt={`${item.name || 'Product'} image ${selectedImageIndex + 1}`}
                                 className="w-full h-full object-cover object-center transition-all duration-300"
@@ -121,7 +123,7 @@ export default function ProductDetailsPage() {
                                             : 'border-zinc-200 dark:border-zinc-800 opacity-60 hover:opacity-100'
                                         }`}
                                 >
-                                    <img
+                                    <Image width={500} height={500}
                                         src={imgUrl}
                                         alt={`Thumbnail ${index + 1}`}
                                         className="w-full h-full object-cover object-center"
